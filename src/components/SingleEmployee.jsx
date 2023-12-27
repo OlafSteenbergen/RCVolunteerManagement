@@ -1,0 +1,53 @@
+import React, {useState} from 'react'
+import {Link, useParams } from 'react-router-dom';
+
+import {all_employees} from './allEmployees';
+
+const SingleEmployee = () => {
+    const {singleEmp} = useParams();
+    const [empl] = useState(all_employees.Employees);
+    const singemp = empl.filter((empl) => empl.userId == singleEmp)
+
+  return (
+    <div class='w-100 flex justify-center items-center '>
+        <div class="m-10 w-3/4 bg-white rounded-md overflow-hidden relative shadow-md">
+        {singemp.map((emp) => (
+            <div class="p-4">
+            <h2 className="text-2xl text-green-400">{emp.firstName} {emp.lastName}</h2>
+            
+            <div class="w-100 flex justify-center items-center">
+                <img src={emp.profileImg} class='object-cover h-48 w-96 hover:opacity-80'></img>
+            </div>
+            <div className="flex justify-between mt-4 mb-4 text-gray-500">
+                <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="ml-1 lg:text-xl">{emp.jobTitleName}</span>
+                </div>
+
+                <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                    </svg>
+                    <span className="ml-1 lg:text-xl">{emp.region}</span>
+                </div>
+
+                <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                    </svg>
+                    <span className="ml-1 lg:text-xl">{emp.employeeCode}</span>
+                </div>
+            </div>
+
+    </div>
+    
+        ))}
+    </div>
+    </div>
+  )
+}
+
+export default SingleEmployee
